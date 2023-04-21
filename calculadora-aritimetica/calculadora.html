@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div class="container mt-5 d-flex justify-content-center align-items-center">
+        <div class="form-group d-flex align-items-center">
+            Calculadora Aritmética
+        </div>
+    </div>
+
+    <div id="app" class="container mt-5">
+        <div class="form-group">
+            <label for="num1">Informe o 1° Número:</label>
+            <input type="number" class="form-control" id="num1" v-model="num1">
+        </div>
+
+        <div class="form-group">
+            <label for="num2">Informe o 2° Número:</label>
+            <input type="number" class="form-control" id="num2" v-model="num2">
+        </div>
+
+        <div class="form-group">
+            <label for="operacao">Selecione a Operação:</label>
+            <select class="form-control" id="operacao" v-model="operacao">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+        </div>
+
+        <center>
+            <div class="form-group">
+                O resultado é: {{ resultado }}
+            </div>
+        </center>
+
+    </div>
+
+    <!-- Script -->
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num1: 0,
+                num2: 0,
+                operacao: '+',
+                resultado: 0
+            },
+            computed: {
+                calcular: function () {
+                    switch (this.operacao) {
+                        case '+':
+                            return this.num1 + this.num2;
+                        case '-':
+                            return this.num1 - this.num2;
+                        case '*':
+                            return this.num1 * this.num2;
+                        case '/':
+                            return this.num1 / this.num2;
+                    }
+                }
+            },
+            watch: {
+                calcular: function (resultado) {
+                    this.resultado = resultado;
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
